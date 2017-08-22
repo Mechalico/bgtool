@@ -46,9 +46,7 @@ void copyBytes(ifstream& bif, ofstream& bof, uint32_t offset, uint32_t length){
 	char bytes[length];
 	bif.seekg(offset, bif.beg);
 	bif.read(bytes, length);
-	for (int j = 0; j < length; j++){
-		bof << bytes[j];
-	}
+	bof.write(bytes, length);
 }
 
 void openFileAndCopyBytes(string filename, ifstream& bif, uint32_t offset, uint32_t length){
@@ -663,7 +661,7 @@ int fileReconstruct(string sourcefilename, string bgfileprefix){
 	bgsethreeif.close();
 	bgsehif.close();
 	rf.close();
-	cout << "Added data from the " << bgfileprefix << " prefix set to " << sourcefilename;
+	cout << "Added data from the " << bgfileprefix << " prefix set to the file. See " << sourcefilename << "_newbg";
 	return 0;
 }
 
