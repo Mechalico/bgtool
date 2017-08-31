@@ -19,7 +19,7 @@ uint32_t fileIntPluck (ifstream& bif, uint32_t offset){
 	//convert signed to unsigned
 	unsigned char* ubuf = reinterpret_cast<unsigned char*>(buffer);
 	uint32_t returnint = 0;
-	if (isLittleEndian){
+	if (isLittleEndian()){
 		returnint = (ubuf[3] << 0) | (ubuf[2] << 8) | (ubuf[1] << 16) | (ubuf[0] << 24);
 	} else {
 		returnint = (ubuf[0] << 0) | (ubuf[1] << 8) | (ubuf[2] << 16) | (ubuf[3] << 24);
@@ -34,7 +34,7 @@ float fileFloatPluck (ifstream& bif, uint32_t offset){
 	//convert signed to unsigned
 	unsigned char* ubuf = reinterpret_cast<unsigned char*>(buffer);
 	float returnfloat = 0;
-	if (isLittleEndian){
+	if (isLittleEndian()){
 		returnfloat = (ubuf[3] << 0) | (ubuf[2] << 8) | (ubuf[1] << 16) | (ubuf[0] << 24);
 	} else {
 		returnfloat = (ubuf[0] << 0) | (ubuf[1] << 8) | (ubuf[2] << 16) | (ubuf[3] << 24);
@@ -65,7 +65,7 @@ void saveIntToFileEnd(ofstream& bof, uint32_t newint){
 	char buffer[4];
 	char* initbuffer = reinterpret_cast<char*>(&newint);
 		//assigns values wrt endianness
-		if (isLittleEndian){
+		if (isLittleEndian()){
 			for (int i = 0; i < 4; i++){
 				buffer[i] = initbuffer[3-i];
 			}
@@ -82,7 +82,7 @@ void saveFloatToFileEnd(ofstream& bof, float newfloat){
 	char buffer[4];
 	char* initbuffer = reinterpret_cast<char*>(&newfloat);
 		//assigns values wrt endianness
-		if (isLittleEndian){
+		if (isLittleEndian()){
 			for (int i = 0; i < 4; i++){
 				buffer[i] = initbuffer[3-i];
 			}
